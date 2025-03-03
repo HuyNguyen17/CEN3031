@@ -22,8 +22,45 @@ CREATE TABLE users (
 	linkedin VARCHAR(255),
 	major VARCHAR(255),
 	year VARCHAR(20),
-	description VARCHAR(255)
+	description VARCHAR(1250),
+	profile_pic_small bytea,
+	profile_pic_full bytea,
+	projects bigint NOT NULL PRIMARY KEY,
+	organizations bigint NOT NULL PRIMARY KEY
 );
+
+CREATE TABLE projects(
+	id BIGSERIAL NOT NULL PRIMARY KEY,
+	projectname VARCHAR(60) NOT NULL UNIQUE,
+	description VARCHAR(1250),
+	project_pic_small bytea,
+	project_pic_full bytea,
+	project_admins  bigint NOT NULL PRIMARY KEY,
+	project_members  bigint NOT NULL PRIMARY KEY,
+	organizations bigint NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE organizations(
+	id BIGSERIAL NOT NULL PRIMARY KEY,
+	organization_name VARCHAR(60) NOT NULL UNIQUE,
+	description VARCHAR(1250),
+	org_pic_small bytea,
+	org_pic_full bytea,
+	org_admins bigint NOT NULL PRIMARY KEY,
+	org_members bigint NOT NULL PRIMARY KEY,
+	org_followers bigint NOT NULL PRIMARY KEY,
+	projects bigint NOT NULL PRIMARY KEY
+);
+
+--this is how likes can be implemented
+--found by Laurenz Abe on stack overflow. 
+CREATE TABLE likes (
+   person_id bigint REFERENCES persons NOT NULL,
+   post_id bigint REFERENCES posts NOT NULL,
+   PRIMARY KEY (person_id, post_id)
+);
+
+
 
 INSERT INTO users (username, password, email, linkedin, major, year, description) values ('firstuser', 'firstpassword', 'firstuser@ufl.edu', 'mylinkedin.com', 'Computer Engineering', '4th', 'Freshman ece student at UF!');
  
