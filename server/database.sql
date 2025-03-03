@@ -22,7 +22,7 @@ CREATE TABLE users (
 	linkedin VARCHAR(255),
 	major VARCHAR(255),
 	year VARCHAR(20),
-	description VARCHAR(1250),
+	description VARCHAR(5000),
 	profile_pic_small bytea,
 	profile_pic_full bytea,
 	projects bigint NOT NULL PRIMARY KEY,
@@ -32,7 +32,7 @@ CREATE TABLE users (
 CREATE TABLE projects(
 	id BIGSERIAL NOT NULL PRIMARY KEY,
 	projectname VARCHAR(60) NOT NULL UNIQUE,
-	description VARCHAR(1250),
+	description VARCHAR(5000),
 	project_pic_small bytea,
 	project_pic_full bytea,
 	project_admins  bigint NOT NULL PRIMARY KEY,
@@ -43,7 +43,7 @@ CREATE TABLE projects(
 CREATE TABLE organizations(
 	id BIGSERIAL NOT NULL PRIMARY KEY,
 	organization_name VARCHAR(60) NOT NULL UNIQUE,
-	description VARCHAR(1250),
+	description VARCHAR(5000),
 	org_pic_small bytea,
 	org_pic_full bytea,
 	org_admins bigint NOT NULL PRIMARY KEY,
