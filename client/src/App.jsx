@@ -6,6 +6,8 @@ import SignupPage from "./routes/SignupPage"
 import UsersListPage from "./routes/UsersListPage";
 import UserProfile from "./routes/UserProfile";
 import ProjectsListPage from "./routes/ProjectsListPage";
+import SignupSuccessPage from "./routes/SignupSuccess";
+import SignupFailurePage from "./routes/SignupFailure";
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
         <Route path="/users" element={<UsersListPage/>}/>
         <Route path="/profile/:username" element={<UserProfile/>}/>
         <Route path="/projects" element={<ProjectsListPage/>}/>
+        <Route path="/signup-success" element={<SignupSuccessPage/>}/>
+        <Route path="/signup-failure" element={<SignupFailurePage/>}/>
       </Routes>
     </Router>
   );

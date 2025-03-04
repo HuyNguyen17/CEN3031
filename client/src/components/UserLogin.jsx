@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import api from "../api/api"
 
 //Login page!
 //TODO: Does not check for success! Check for it!
 const UserLogin = () => {
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const HandleLogin = async (e) => {
@@ -15,7 +15,7 @@ const UserLogin = () => {
                     username,
                     password,
             }
-            api.post("/login", body)
+            api.post("users/login", body)
                 .then(function (response) {console.log(response);})
                 .catch(function (err) {console.log(err);});
             //TODO: Login logic

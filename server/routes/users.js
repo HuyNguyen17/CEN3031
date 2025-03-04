@@ -11,10 +11,13 @@ const saltRounds = 7;
 // create an account 
 router.post('/signup', async (req, res) => {
     const {username, password, email} = req.body;
-    console.log(req.body); //uncomment to see what is being passed in
+    if (!username || !password || !email) {
+        return res.status(400).send({ error: "All fields required."});
+    }
+    //console.log(req.body); //uncomment to see what is being passed in
     try{
         const hashPassword = await bcrypt.hash(password, saltRounds);
-        console.log(hashPassword); //uncomment to see hashed password 
+        //console.log(hashPassword); //uncomment to see hashed password 
         await db.query(
             'INSERT INTO users (username, password, email) VALUES ($1, $2, $3)', [username, hashPassword, email]
         );
