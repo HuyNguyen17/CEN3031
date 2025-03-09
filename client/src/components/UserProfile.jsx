@@ -10,7 +10,16 @@ const UserProfile = () => {
     useEffect(() => {
         const fetchUserProfile = async () => {
             try {
-                const response = await api.get(`/users/${username}`);
+                const token = localStorage.getItem('authToken');
+                if (!token) {
+                    setError(true);
+                    return;
+                }
+                const response = await api.get(`/users/getuser/${username}`, {
+                    headers: {
+                        Authorization: `${token}`, // Send the token in the header
+                    },
+                });
                 setUserData(response.data);
             } catch (error) {
                 console.error("Error fetching user profile:", error);
@@ -23,7 +32,7 @@ const UserProfile = () => {
 
     // Display 404 if no such user exists
     if (error) {
-        return <div>404 - User not found</div>;
+        return <div>404 - Unauthorized</div>;
     }
 
     if (!userData) {

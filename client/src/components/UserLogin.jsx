@@ -23,7 +23,7 @@ const UserLogin = () => {
                     console.log(response);
                     localStorage.setItem("authToken",response.data.token);
                     alert("Login Success!");
-                    navigate("/");
+                    navigate("/home");
                 })
                 .catch(function (err) {
                     console.log("Login Error!");
